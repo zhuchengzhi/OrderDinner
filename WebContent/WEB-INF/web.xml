@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>tbs</display-name>
+ <servlet>
+  <servlet-name>spring</servlet-name>
+  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>spring</servlet-name>
+  <url-pattern>/page/*</url-pattern>
+ </servlet-mapping>
+ <!-- 加载监听 -->
+ <listener>
+ 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ </listener>
+<!--contextConfigLocation指定上下文文件的位置,开启监听的时候加载,必须与ContextLoaderListener绑定  -->
+ <!-- 1.ContextLoaderListener启动加载指定的xml配置文件,没有的话默认加载applicationContext.xml,如果有多个xml文件,就在param-value中配置
+ 	2.classpath*:XX.xml和classpath:XX.xml的区别,前面是加载多个jar包中的具有相同名称XX的xml文件,后面一个是加载第一个文件
+ -->
+ <context-param>
+ 	<param-name>contextConfigLocation</param-name>
+ 	<!-- 有多个xml文件的话,用逗号分隔 -->
+ 	<param-value>/WEB-INF/spring-*.xml,
+ 	</param-value>
+ </context-param>
+</web-app>
